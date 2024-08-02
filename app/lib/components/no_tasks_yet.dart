@@ -1,3 +1,4 @@
+import 'package:app/styles/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class NoTasksYet extends StatelessWidget {
@@ -12,7 +13,9 @@ class NoTasksYet extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.network(
-              "https://cdn-icons-png.flaticon.com/256/8777/8777961.png"),
+            "https://cdn-icons-png.flaticon.com/256/8777/8777961.png",
+            height: context.screenHeight * 0.2,
+          ),
           const Text("No Tasks yet !"),
         ],
       ),

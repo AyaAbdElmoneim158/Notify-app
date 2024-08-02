@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import '../../../components/no_tasks_yet.dart';
 import '../../../controller/app_cubit.dart';
 import '../../../model/task_model.dart';
 import '../../../styles/colors.dart';
@@ -70,57 +71,60 @@ class BuildBody extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: tasks.length,
-              itemBuilder: (context, index) => Dismissible(
-                key: Key(tasks[index].title!),
-                direction: DismissDirection.endToStart,
-                onDismissed: (direction) {
-                  BlocProvider.of<AppCubit>(context).removeTask(tasks[index]);
-                },
-                background: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFE6E6),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    children: [
-                      const Spacer(),
-                      IconButton(
-                        icon: const Icon(
-                          FontAwesomeIcons.trash,
-                          color: Colors.red,
+          (tasks.isEmpty)
+              ? const NoTasksYet()
+              : Expanded(
+                  child: ListView.builder(
+                    itemCount: tasks.length,
+                    itemBuilder: (context, index) => Dismissible(
+                      key: Key(tasks[index].title!),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) {
+                        BlocProvider.of<AppCubit>(context)
+                            .removeTask(tasks[index]);
+                      },
+                      background: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFE6E6),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        onPressed: () {
-                          BlocProvider.of<AppCubit>(context)
-                              .removeTask(tasks[index]);
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            IconButton(
+                              icon: const Icon(
+                                FontAwesomeIcons.trash,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {
+                                BlocProvider.of<AppCubit>(context)
+                                    .removeTask(tasks[index]);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      child: TaskItem(
+                        task: tasks[index],
+                        onTap: () {
+                          BlocProvider.of<AppCubit>(context).updateTask(
+                            TaskModel(
+                              title: tasks[index].title,
+                              date: tasks[index].date,
+                              start: tasks[index].start,
+                              end: tasks[index].end,
+                              reminder: tasks[index].reminder,
+                              repeat: tasks[index].repeat,
+                              status: "completed",
+                              favorite: tasks[index].favorite,
+                            ),
+                          );
                         },
                       ),
-                    ],
+                    ),
                   ),
                 ),
-                child: TaskItem(
-                  task: tasks[index],
-                  onTap: () {
-                    BlocProvider.of<AppCubit>(context).updateTask(
-                      TaskModel(
-                        title: tasks[index].title,
-                        date: tasks[index].date,
-                        start: tasks[index].start,
-                        end: tasks[index].end,
-                        reminder: tasks[index].reminder,
-                        repeat: tasks[index].repeat,
-                        status: "completed",
-                        favorite: tasks[index].favorite,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
         ],
       );
     }, listener: (context, state) {
