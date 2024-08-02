@@ -4,6 +4,7 @@ import 'service/notification.dart';
 import 'styles/themes.dart';
 import 'util/globals.dart';
 import 'util/routes.dart';
+import 'view/Board/screens/boarding_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

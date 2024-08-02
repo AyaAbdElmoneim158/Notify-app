@@ -10,15 +10,16 @@ class TaskModel {
   final String? status;
   final String? favorite;
 
-  TaskModel(
-      {this.title,
-      this.start,
-      this.end,
-      this.reminder,
-      this.repeat,
-      this.date,
-      this.status,
-      this.favorite});
+  TaskModel({
+    this.title,
+    this.start,
+    this.end,
+    this.reminder,
+    this.repeat,
+    this.date,
+    this.status,
+    this.favorite,
+  });
 
   Map<String, dynamic> toMap() {
     return {

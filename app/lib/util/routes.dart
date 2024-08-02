@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import '../view/Board/screens/boarding_screen.dart';
 import 'globals.dart';
 
 class AppRoute {
@@ -44,15 +44,4 @@ class AppRoute {
 
   static void pop<T extends Object?>() =>
       Globals.instance.navigatorKey.currentState?.pop<T>();
-}
-
-class BoardingScreen extends StatelessWidget {
-  const BoardingScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("On the boarding screen")),
-    );
-  }
 }
