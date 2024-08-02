@@ -24,7 +24,7 @@ class BuildBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: context.height10),
             child: DatePicker(
               DateTime.now(),
-              height: 80,
+              height: 90,
               width: 60,
               initialSelectedDate: DateTime.now(),
               selectionColor: green,

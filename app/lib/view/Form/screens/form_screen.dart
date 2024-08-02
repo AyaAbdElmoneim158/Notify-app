@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../components/build_app_bar.dart';
 import '../../../controller/app_cubit.dart';
 import '../../../controller/app_state.dart';
-import '../../Board/widgets/build_body.dart';
+import '../widgets/build_body.dart';
 
 class FormScreen extends StatelessWidget {
   const FormScreen({super.key});
